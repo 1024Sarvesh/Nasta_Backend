@@ -1,6 +1,7 @@
 import express from 'express'
 import {prisma} from "./Prisma/prisma_client.mjs"
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken';
 const app = express()
 const port = 5000
 
@@ -38,9 +39,14 @@ app.post("/login",async (req,res)=>{
         })
         return
     }
-    res.json({massage:`login successfull welcome ${user.name}`})
+    const token = jwt.sign({name:user.name,email:user.email},
+        process.env.TOKEN_SECRET
+    );
+    res.json({massage:`login successfull welcome ${user.name}`,
+        token:token
+    
+    })
 })
-
 
 
 
