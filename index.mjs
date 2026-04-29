@@ -67,11 +67,60 @@ app.patch("/forget_password", async (req, res) => {
     where: {
       id: user.id,
     },
-    data: { otp: StrOtp },
+    data: { 
+      otp: StrOtp ,
+      otpcreatedAt:new Date(Date.now()),
+    },
   });
   await sendOtpEmail(user.email, StrOtp);
   res.json({ message: "OTP sent successfully Please Check Your Email" });
 });
+
+
+app.patch("/reset_password", async (req, res) => {
+const email = req.body.email;
+const otp = req.body.otp;
+const newPassword = req.body.newPassword;
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (!user) {
+     res.status(404).json({ 
+      error: "User not found" 
+    });
+    return
+  }
+
+  if (otp !== user.otp) {
+     res.status(401).json({
+       error: "OTP is Invalid " 
+      });
+      return
+  }
+
+  const otpvaliditymin = 5;
+if(Date.now() - user.otpcreatedAt.getTime()>otpvaliditymin*60*1000){
+   res.status(401).json({
+       error: "OTP expired " 
+})}
+
+  const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+  await prisma.user.update({
+    where: { 
+      id: user.id 
+    },
+    data: {
+      otp:null,
+      password:hashedPassword,
+    },
+  });
+
+  res.json({ message: "Password reset successful" });
+});
+
+
 
 app.listen(port, () => {
   console.log(`server started on ${port} `);

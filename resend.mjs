@@ -7,7 +7,7 @@ const sendOtpEmail = async (email, otp) => {
     to: email,
     from: "Sarvesh@resend.dev",
     subject: "Your OTP",
-    text: `Your OTP is ${otp}`,
+    text: `Your OTP is ${otp} of forget password`,
   });
   console.log(res)
 };
