@@ -15,10 +15,22 @@ model User{
     address String?
     otp String?
     otpcreatedAt DateTime?
-    
+    menu    Menu[]
 }
 
 
+model Menu{
+    id Int @id @default(autoincrement())
+    name String @unique
+    description String?
+    Price_half Int
+    Price_full Int
+    thumbnail String
+    user User @relation(fields:[created_by], references: [id])
+    created_by Int 
+    created_at DateTime @default(now())
+    
+}
 
 // TODO:PAHALE TABLE KA STRUCTURE BANAO,PHIR npx prisma migrate dev --name init  ISE RN KARO AUR PRISMA CLIENT
 // KO UPDATE KARENGE USING COMMAND npx prisma generate AUR BAS TABLE DATABASE ME TABLE CREATE HO JAYEGA
