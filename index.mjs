@@ -5,7 +5,11 @@ import { menuRouter } from "./menu/route.mjs";
 const app = express();
 const port = 5000;
 
-app.use(express.json());
+app.use(express.json());// body parser
+app.use((req,res,next)=>{
+console.log(" global middleware")
+next()
+})
 app.use("/users",userRouter)
 app.use("/menus",menuRouter)
 

@@ -215,7 +215,7 @@ export type MenuGroupByOutputType = {
   description: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail: string | null
   created_by: number
   created_at: Date
   _count: MenuCountAggregateOutputType | null
@@ -249,7 +249,7 @@ export type MenuWhereInput = {
   description?: Prisma.StringNullableFilter<"Menu"> | string | null
   Price_half?: Prisma.IntFilter<"Menu"> | number
   Price_full?: Prisma.IntFilter<"Menu"> | number
-  thumbnail?: Prisma.StringFilter<"Menu"> | string
+  thumbnail?: Prisma.StringNullableFilter<"Menu"> | string | null
   created_by?: Prisma.IntFilter<"Menu"> | number
   created_at?: Prisma.DateTimeFilter<"Menu"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -261,7 +261,7 @@ export type MenuOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   Price_half?: Prisma.SortOrder
   Price_full?: Prisma.SortOrder
-  thumbnail?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -276,7 +276,7 @@ export type MenuWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Menu"> | string | null
   Price_half?: Prisma.IntFilter<"Menu"> | number
   Price_full?: Prisma.IntFilter<"Menu"> | number
-  thumbnail?: Prisma.StringFilter<"Menu"> | string
+  thumbnail?: Prisma.StringNullableFilter<"Menu"> | string | null
   created_by?: Prisma.IntFilter<"Menu"> | number
   created_at?: Prisma.DateTimeFilter<"Menu"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -288,7 +288,7 @@ export type MenuOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   Price_half?: Prisma.SortOrder
   Price_full?: Prisma.SortOrder
-  thumbnail?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.MenuCountOrderByAggregateInput
@@ -307,7 +307,7 @@ export type MenuScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Menu"> | string | null
   Price_half?: Prisma.IntWithAggregatesFilter<"Menu"> | number
   Price_full?: Prisma.IntWithAggregatesFilter<"Menu"> | number
-  thumbnail?: Prisma.StringWithAggregatesFilter<"Menu"> | string
+  thumbnail?: Prisma.StringNullableWithAggregatesFilter<"Menu"> | string | null
   created_by?: Prisma.IntWithAggregatesFilter<"Menu"> | number
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Menu"> | Date | string
 }
@@ -317,7 +317,7 @@ export type MenuCreateInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMenuInput
 }
@@ -328,7 +328,7 @@ export type MenuUncheckedCreateInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_by: number
   created_at?: Date | string
 }
@@ -338,7 +338,7 @@ export type MenuUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMenuNestedInput
 }
@@ -349,7 +349,7 @@ export type MenuUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -360,7 +360,7 @@ export type MenuCreateManyInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_by: number
   created_at?: Date | string
 }
@@ -370,7 +370,7 @@ export type MenuUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -380,7 +380,7 @@ export type MenuUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -493,7 +493,7 @@ export type MenuCreateWithoutUserInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_at?: Date | string
 }
 
@@ -503,7 +503,7 @@ export type MenuUncheckedCreateWithoutUserInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_at?: Date | string
 }
 
@@ -542,7 +542,7 @@ export type MenuScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Menu"> | string | null
   Price_half?: Prisma.IntFilter<"Menu"> | number
   Price_full?: Prisma.IntFilter<"Menu"> | number
-  thumbnail?: Prisma.StringFilter<"Menu"> | string
+  thumbnail?: Prisma.StringNullableFilter<"Menu"> | string | null
   created_by?: Prisma.IntFilter<"Menu"> | number
   created_at?: Prisma.DateTimeFilter<"Menu"> | Date | string
 }
@@ -553,7 +553,7 @@ export type MenuCreateManyUserInput = {
   description?: string | null
   Price_half: number
   Price_full: number
-  thumbnail: string
+  thumbnail?: string | null
   created_at?: Date | string
 }
 
@@ -562,7 +562,7 @@ export type MenuUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -572,7 +572,7 @@ export type MenuUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -582,7 +582,7 @@ export type MenuUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Price_half?: Prisma.IntFieldUpdateOperationsInput | number
   Price_full?: Prisma.IntFieldUpdateOperationsInput | number
-  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -657,7 +657,7 @@ export type $MenuPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string | null
     Price_half: number
     Price_full: number
-    thumbnail: string
+    thumbnail: string | null
     created_by: number
     created_at: Date
   }, ExtArgs["result"]["menu"]>
