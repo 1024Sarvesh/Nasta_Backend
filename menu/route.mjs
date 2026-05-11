@@ -1,24 +1,20 @@
-import {Router} from 'express';
-import { createMenu, deleteMenu, getMenu, updateMenu } from './controller.mjs';
-const menuRouter = Router()
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+const menuRouter = Router();
+import { createMenu, deleteMenu, getMenu, updateMenu } from "./controller.mjs";
+import { authentication } from "../middleware/authentication.mjs";
 
-const authentication = (req,res,next)=>{
-console.log("check auth here")
-next()}
+menuRouter.get("/getMenu", getMenu);
 
+menuRouter.use(authentication);
+
+menuRouter
+  .post("/createMenu", createMenu)
+  .patch("/updateMenu", updateMenu)
+  .delete("/deleteMenu", deleteMenu);
 
 // menuRouter.post("/createMenu",authentication,createMenu)
 // .get("/",getMenu)
 // .patch("/",authentication,updateMenu)
 // .delete("/",authentication,deleteMenu)
-
-
-menuRouter.get("/",getMenu)
-
-menuRouter.use(authentication)
-
-menuRouter.post("/createMenu",createMenu)
-.patch("/",updateMenu)
-.delete("/",deleteMenu)
-
-export{menuRouter}
+export { menuRouter };
